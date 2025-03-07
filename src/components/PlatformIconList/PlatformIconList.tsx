@@ -31,11 +31,20 @@ const PlatformIconList = ({ platforms }: Props) => {
   };
 
   return (
-    <HStack marginY={"10px"}>
-      {platforms.map((platform) => (
-        <Icon as={iconMap[platform.slug]} color="bg.inverted"></Icon>
-      ))}
-    </HStack>
+
+    <>
+<HStack marginY={"10px"}>
+  {platforms?.map((platform) => {
+    const IconComponent = iconMap[platform.slug];
+    return IconComponent ? (
+      <Icon key={platform.name} as={IconComponent} color="gray.500" />
+    ) : (
+      <Text key={platform.name}>No icon available</Text> 
+    );
+  })}
+</HStack>
+
+    </>
   );
 };
 
