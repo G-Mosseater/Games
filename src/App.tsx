@@ -1,34 +1,34 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Grid, GridItem, Show } from "@chakra-ui/react";
+import NavBar from "./components/NavBar/NavBar";
+import GameGrid from "./components/GameGrid/GameGrid";
+import GenreList from "./components/GenreList/GenreList";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <>
+      <Grid
+        templateAreas={{
+          base: `"nav " "main"`,
+          lg: `"nav nav" "aside main"`,
+        }}
+        templateColumns={{
+          base: '1fr',
+          lg: '200px 1fr'
+
+        }}  
+      >
+        <GridItem area="nav">
+          <NavBar></NavBar>
+        </GridItem>
+        <GridItem area="aside" display={{ base: "none", lg: "block" }} paddingX='8px'>
+         <GenreList></GenreList>
+        </GridItem>
+        <GridItem area="main">
+          <GameGrid></GameGrid>
+        </GridItem>
+      </Grid>
+    </>
+  );
 }
 
-export default App
+export default App;
