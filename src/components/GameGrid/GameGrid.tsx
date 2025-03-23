@@ -5,6 +5,7 @@ import GameCard from "../GameCard/GameCard";
 import GameCardSkeleton from "../GameCard/GameCardSkeleton";
 import GameCardContainer from "../GameCard/GameCardContainer";
 import { Genre } from "@/hooks/useGenres";
+import { GameQuery } from "@/App";
 
 
 
@@ -13,13 +14,14 @@ import { Genre } from "@/hooks/useGenres";
 // we pass it to the game hook
 interface Props {
 
-  selectedGenre: Genre | null
-  selectedPlatform: Platform | null;
+  // selectedGenre: Genre | null
+  // selectedPlatform: Platform | null;
+  gameQuery: GameQuery
 }
 
-const GameGrid = ({selectedGenre, selectedPlatform} : Props) => {
+const GameGrid = ({gameQuery} : Props) => {
   //rename games to data if using the useData hook
-  const { data, error, isLoading } = useGames(selectedGenre,selectedPlatform);
+  const { data, error, isLoading } = useGames(gameQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <>
@@ -29,7 +31,7 @@ const GameGrid = ({selectedGenre, selectedPlatform} : Props) => {
         placeItems='center'
         columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
         padding="10px"
-        gap="30px"
+        gap="40px"
         width='100%'
         height='100%'
       >
